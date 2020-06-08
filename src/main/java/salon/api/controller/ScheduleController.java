@@ -2,9 +2,9 @@ package salon.api.controller;
 
 
 import org.springframework.web.bind.annotation.*;
-import salon.api.model.Bookings;
-import salon.api.model.DisplayAvailableOffer;
+import salon.api.model.Hairdresser;
 import salon.api.model.Schedule;
+import salon.api.model.Services;
 import salon.api.repository.ScheduleRepository;
 import salon.api.service.ScheduleService;
 
@@ -23,19 +23,29 @@ public class ScheduleController {
         this.scheduleService = scheduleService;
     }
 
+
     @GetMapping("/all")
-    public List<DisplayAvailableOffer> getDisplayOffers() {
+    public List<Hairdresser> getDisplayOffers() {
         return scheduleRepository.displayAvailableOffers();
     }
+
+
 
     @GetMapping("/schedules")
     public List<Schedule> getAllSchedules() {
         return scheduleRepository.getAllSchedules();
     }
 
-    @GetMapping("/bookingWeek/{id}")
-    public List<Bookings> getBookingWeek(@PathVariable("id") int hairdresserId) {
+    @GetMapping("/week/{id}")
+    public List<Schedule> getScheduleWeek(@PathVariable("id") int hairdresserId) {
         return scheduleRepository.getHairdresserWeekSchedule(hairdresserId);
     }
+
+    @GetMapping("/services/{id}")
+    public List<Services> getHairdresserServices(@PathVariable("id") int hairdresserId) {
+        return scheduleRepository.getHairdresserServices(hairdresserId);
+    }
+
+
 
 }

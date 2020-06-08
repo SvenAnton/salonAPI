@@ -4,12 +4,12 @@ public class Schedule {
 
     private int id;
     private String schedule_type;
-    private String schedule_manager;
+    private int schedule_manager;
     private int room_in_schedule;
     private String start_at;
     private String end_at;
 
-    public Schedule(int id, String schedule_type, String schedule_manager,
+    public Schedule(int id, String schedule_type, int schedule_manager,
                     int room_in_schedule, String start_at, String end_at) {
         this.id = id;
         this.schedule_type = schedule_type;
@@ -35,11 +35,11 @@ public class Schedule {
         this.schedule_type = schedule_type;
     }
 
-    public String getSchedule_manager() {
+    public int getSchedule_manager() {
         return schedule_manager;
     }
 
-    public void setSchedule_manager(String schedule_manager) {
+    public void setSchedule_manager(int schedule_manager) {
         this.schedule_manager = schedule_manager;
     }
 

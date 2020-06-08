@@ -1,17 +1,19 @@
 package salon.api.model;
 
-public class DisplayAvailableOffer {
+public class Hairdresser {
 
     private int id;
     private String name;
     private String description;
     private String services;
+    private String profilePictureUrl;
 
-    public DisplayAvailableOffer(int id, String name, String description, String services) {
+    public Hairdresser(int id, String name, String description, String services, String profilePictureUrl) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.services = services;
+        this.profilePictureUrl = profilePictureUrl;
     }
 
     public int getId() {
@@ -44,5 +46,13 @@ public class DisplayAvailableOffer {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getProfilePictureUrl() {
+        return profilePictureUrl;
+    }
+
+    public void setProfilePictureUrl(String profilePictureUrl) {
+        this.profilePictureUrl = profilePictureUrl;
     }
 }

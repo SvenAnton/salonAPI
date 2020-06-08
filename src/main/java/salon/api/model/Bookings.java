@@ -3,19 +3,36 @@ package salon.api.model;
 public class Bookings {
 
     private int id;
-    private String schedule_type;
-    private int hairdresser;
-    private int room;
+    private int customer;
+    private int schedule;
+    private String description;
     private String start_at;
     private String end_at;
+    private int cancelled;
+    private int service;
+    private String hairdresser;
 
-    public Bookings(int id, String schedule_type, int hairdresser, int room, String start_at, String end_at) {
+    public Bookings() {}
+
+    public Bookings(int id, int customer, int schedule, String description, String start_at, String end_at,
+                    int cancelled, int service) {
         this.id = id;
-        this.schedule_type = schedule_type;
-        this.hairdresser = hairdresser;
-        this.room = room;
+        this.customer = customer;
+        this.schedule = schedule;
+        this.description = description;
         this.start_at = start_at;
         this.end_at = end_at;
+        this.cancelled = cancelled;
+        this.service = service;
+    }
+
+    public Bookings(int customer, String start_at, String end_at, int service,
+                    String hairdresser) {
+        this.customer = customer;
+        this.start_at = start_at;
+        this.end_at = end_at;
+        this.service = service;
+        this.hairdresser = hairdresser;
     }
 
     public int getId() {
@@ -26,28 +43,28 @@ public class Bookings {
         this.id = id;
     }
 
-    public String getSchedule_type() {
-        return schedule_type;
+    public int getCustomer() {
+        return customer;
     }
 
-    public void setSchedule_type(String schedule_type) {
-        this.schedule_type = schedule_type;
+    public void setCustomer(int customer) {
+        this.customer = customer;
     }
 
-    public int getHairdresser() {
-        return hairdresser;
+    public int getSchedule() {
+        return schedule;
     }
 
-    public void setHairdresser(int hairdresser) {
-        this.hairdresser = hairdresser;
+    public void setSchedule(int schedule) {
+        this.schedule = schedule;
     }
 
-    public int getRoom() {
-        return room;
+    public String getDescription() {
+        return description;
     }
 
-    public void setRoom(int room) {
-        this.room = room;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getStart_at() {
@@ -64,5 +81,29 @@ public class Bookings {
 
     public void setEnd_at(String end_at) {
         this.end_at = end_at;
+    }
+
+    public int getCancelled() {
+        return cancelled;
+    }
+
+    public void setCancelled(int cancelled) {
+        this.cancelled = cancelled;
+    }
+
+    public int getService() {
+        return service;
+    }
+
+    public void setService(int service) {
+        this.service = service;
+    }
+
+    public String getHairdresser() {
+        return hairdresser;
+    }
+
+    public void setHairdresser(String hairdresser) {
+        this.hairdresser = hairdresser;
     }
 }

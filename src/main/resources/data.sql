@@ -21,7 +21,6 @@
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (1,'Sven'),(2,'Jaak');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -31,7 +30,6 @@ UNLOCK TABLES;
 
 LOCK TABLES `location` WRITE;
 /*!40000 ALTER TABLE `location` DISABLE KEYS */;
-INSERT INTO `location` VALUES (1,'EST','Tallinn','Uus','12'),(2,'EST','Tallinn','Viru','14'),(3,'EST','Tartu','Uus','30'),(4,'EST','Tallinn','Sõle','23');
 /*!40000 ALTER TABLE `location` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -41,7 +39,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `schedule` WRITE;
 /*!40000 ALTER TABLE `schedule` DISABLE KEYS */;
-INSERT INTO `schedule` VALUES (1,'juuksur',1,1,'2020-06-10 09:00:00','2020-06-10 17:00:00'),(7,'juuksur',2,2,'2020-06-10 09:00:00','2020-06-10 17:00:00'),(13,'juuksur',1,1,'2020-06-11 09:00:00','2020-06-11 17:00:00'),(21,'juuksur',2,2,'2020-06-11 09:00:00','2020-06-11 17:00:00');
+INSERT INTO `schedule` VALUES (1,'juuksur',1,1,'2020-06-10 10:00:00','2020-06-10 17:00:00'),(7,'juuksur',2,2,'2020-06-10 09:00:00','2020-06-10 17:00:00'),(13,'juuksur',1,1,'2020-06-11 11:00:00','2020-06-11 18:00:00'),(21,'juuksur',2,2,'2020-06-11 09:00:00','2020-06-11 17:00:00'),(22,'juuksur',2,1,'2020-06-20 09:00:00','2020-06-20 17:00:00');
 /*!40000 ALTER TABLE `schedule` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -71,7 +69,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `service_booking` WRITE;
 /*!40000 ALTER TABLE `service_booking` DISABLE KEYS */;
-INSERT INTO `service_booking` VALUES (5,1,7,NULL,'2020-06-10 12:00:00','2020-06-10 12:45:00',0,3);
+INSERT INTO `service_booking` VALUES (5,1,7,NULL,'2020-06-10 12:00:00','2020-06-10 12:45:00',0,3),(6,2,7,'l6ikan','2020-06-10 14:00:00','2020-06-10 14:45:00',0,3),(7,2,22,'normal','2020-06-20 14:00:00','2020-06-20 14:45:00',0,3),(9,5,13,NULL,'2020-06-11 12:00:00','2020-06-11 13:15:00',0,1),(10,5,13,NULL,'2020-06-11 12:00:00','2020-06-11 13:15:00',0,1),(11,5,13,NULL,'2020-06-11 12:00:00','2020-06-11 13:15:00',0,1),(12,10,13,NULL,'2020-06-11 12:00:00','2020-06-11 13:15:00',0,1),(26,2,13,NULL,'2020-06-11 11:00:00','2020-06-11 12:00:00',0,2),(27,2,21,NULL,'2020-06-11 09:30:00','2020-06-11 10:40:00',0,6);
 /*!40000 ALTER TABLE `service_booking` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -101,7 +99,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Kalle',NULL,'Juuksur'),(2,'Malle',NULL,'Juuksur'),(3,'Oskar',NULL,'Salong'),(4,'Tiina',NULL,'Salong'),(5,'Peep',NULL,'Juuksur');
+INSERT INTO `user` VALUES (1,'Kalle','Kogenud juuksur anno 1950','Juuksur','https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'),(2,'Malle','Suurepärase stiilitunnetusega ja auhinnatud soengute sättida','Juuksur','https://www.roteesf.com/wp-content/uploads/2019/11/01-9.jpg'),(3,'Oskar',NULL,'Salong',NULL),(4,'Tiina',NULL,'Salong',NULL),(5,'Peep',NULL,'Juuksur',NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153,4 +151,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-03 21:38:26
+-- Dump completed on 2020-06-08 20:59:37

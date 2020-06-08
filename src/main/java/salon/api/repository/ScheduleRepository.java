@@ -3,9 +3,9 @@ package salon.api.repository;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import salon.api.model.Bookings;
-import salon.api.model.DisplayAvailableOffer;
+import salon.api.model.Hairdresser;
 import salon.api.model.Schedule;
+import salon.api.model.Services;
 
 import java.util.List;
 
@@ -14,7 +14,8 @@ public class ScheduleRepository {
 
 
     private final String initialAvailableOffersSqlString = "" +
-            "select u.id, u.name, u.description, GROUP_CONCAT(distinct service.service_type separator ', ') as services\n" +
+            "select u.id, u.name, u.description,\n" +
+            "GROUP_CONCAT(distinct service.service_type separator ', ') as services, u.profile_picture as picture\n" +
             "from schedule as sc\n" +
             "join services_in_schedule as sc_services\n" +
             "join user_service_list as user_services\n" +
@@ -34,6 +35,18 @@ public class ScheduleRepository {
             "\tstart_at >= CURDATE()\n" +
             "    AND start_at < CURDATE() + INTERVAL 7 DAY;";
 
+    private final String getHairdresserServicesByIdSqlString = "" +
+            "select distinct usl.id as id, service.name as name, usl.duration as duration, usl.price as price\n" +
+            "from services_in_schedule as sc_services\n" +
+            "join user_service_list as usl\n" +
+            "join service as service\n" +
+            "join schedule as sc\n" +
+            "where \n" +
+            "\tsc.schedule_manager = ? and\n" +
+            "    sc.id = sc_services.schedule and\n" +
+            "\tsc_services.services = usl.id and\n" +
+            "    usl.service = service.id";
+
 
 
     private final JdbcTemplate jdbcTemplate;
@@ -41,13 +54,14 @@ public class ScheduleRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<DisplayAvailableOffer> displayAvailableOffers() {
+    public List<Hairdresser> displayAvailableOffers() {
         return jdbcTemplate.query(initialAvailableOffersSqlString,
-                (row, number) -> new DisplayAvailableOffer(
+                (row, number) -> new Hairdresser(
                         row.getInt("id"),
                         row.getString("name"),
                         row.getString("description"),
-                        row.getString("services")
+                        row.getString("services"),
+                        row.getString("picture")
                 ));
     }
 
@@ -56,17 +70,17 @@ public class ScheduleRepository {
                 (row, number) -> new Schedule(
                         row.getInt("id"),
                         row.getString("schedule_type"),
-                        row.getString("schedule_manager"),
+                        row.getInt("schedule_manager"),
                         row.getInt("room_in_schedule"),
                         row.getString("start_at"),
                         row.getString("end_at")
                 ));
     }
 
-    public List<Bookings> getHairdresserWeekSchedule(int hairdresserId) {
+    public List<Schedule> getHairdresserWeekSchedule(int hairdresserId) {
         return jdbcTemplate.query(getHairdresserWeekScheduleSqlString,
                 new Object[]{hairdresserId},
-                (row, number) -> new Bookings(
+                (row, number) -> new Schedule(
                         row.getInt("id"),
                         row.getString("schedule_type"),
                         row.getInt("schedule_manager"),
@@ -75,6 +89,20 @@ public class ScheduleRepository {
                         row.getString("end_at")
         ));
     }
+
+
+    public List<Services> getHairdresserServices(int hairdresserId) {
+        return jdbcTemplate.query(getHairdresserServicesByIdSqlString,
+                new Object[]{hairdresserId},
+                (row, number) -> new Services(
+                        row.getInt("id"),
+                        row.getString("name"),
+                        row.getInt("duration"),
+                        row.getInt("price")
+        ));
+    }
+
+
 
 
 
