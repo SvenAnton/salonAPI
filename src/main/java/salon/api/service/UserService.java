@@ -58,7 +58,8 @@ public class UserService {
     }
 
     public User getCurrentUser() {
-        String loggedInUsername = ((org.springframework.security.core.userdetails.User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        String loggedInUsername = ((org.springframework.security.core.userdetails.User)SecurityContextHolder
+                .getContext().getAuthentication().getPrincipal()).getUsername();
         return userRepository.getUser(loggedInUsername);
     }
 

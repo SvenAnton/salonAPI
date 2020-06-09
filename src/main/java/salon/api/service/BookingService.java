@@ -1,8 +1,10 @@
 package salon.api.service;
 
+import io.jsonwebtoken.lang.Assert;
 import org.springframework.stereotype.Service;
 import salon.api.dto.BookedTimes;
 import salon.api.model.Bookings;
+import salon.api.model.OperationResult;
 import salon.api.repository.BookingRepository;
 
 import java.util.ArrayList;
@@ -27,4 +29,16 @@ public class BookingService {
         });
         return bookedTimes;
     }
+
+    public OperationResult cancelBooking(int bookingId) {
+        try {
+            bookingRepository.cancelBooking(bookingId);
+            return new OperationResult(true, "CANCELLED", bookingId);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            String message = e.getMessage();
+            return new OperationResult(false, message, null);
+        }
+    }
+
 }

@@ -43,7 +43,10 @@ public class BookingRepository {
             "    sc.room_in_schedule = wp.id and " +
             "    wp.location = l.id and " +
             "    usl.id = b.service and " +
-            "    service.id = usl.service;";
+            "    service.id = usl.service and " +
+            "    cancelled = 0;";
+
+    private final String cancelBookingSqlString = "update service_booking set cancelled = 1 where id = ?";
 
 
 
@@ -92,6 +95,12 @@ public class BookingRepository {
                         row.getInt("price")
                 ));
     }
+
+
+    public void cancelBooking(int bookingId) {
+        jdbcTemplate.update(cancelBookingSqlString, bookingId);
+    }
+
 
 
 
