@@ -1,9 +1,11 @@
 package salon.api.repository;
 
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import salon.api.model.Bookings;
+import salon.api.model.CustomerBookingInfo;
 
 import java.util.List;
 
@@ -26,6 +28,23 @@ public class BookingRepository {
             "insert into service_booking(customer, schedule, start_at, end_at, service)\n" +
             "values(?, (select id from schedule where schedule_manager = ? and date(start_at) = date(?)), ?, ?, ?)";
 
+    private final String getCustomerBookings = "" +
+            "select b.id, b.start_at as start_at, b.end_at as end_at, l.city as city, l.street as street, " +
+            "l.building as building, service.name as service_name, usl.price as price " +
+            "from service_booking as b " +
+            "join schedule as sc " +
+            "join workplace as wp " +
+            "join location as l " +
+            "join user_service_list as usl " +
+            "join service as service " +
+            "where " +
+            "b.customer = ? and " +
+            "    b.schedule = sc.id and " +
+            "    sc.room_in_schedule = wp.id and " +
+            "    wp.location = l.id and " +
+            "    usl.id = b.service and " +
+            "    service.id = usl.service;";
+
 
 
     public BookingRepository(JdbcTemplate jdbcTemplate) {
@@ -47,10 +66,31 @@ public class BookingRepository {
                 ));
     }
 
-    public void addBooking(Bookings booking) {
-        jdbcTemplate.update(addBookingSqlString,
-                booking.getCustomer(), booking.getHairdresser(), booking.getStart_at(),
-                booking.getStart_at(), booking.getEnd_at(), booking.getService());
+    public boolean addBooking(Bookings booking) {
+        try {
+            jdbcTemplate.update(addBookingSqlString,
+                    booking.getCustomer(), booking.getHairdresser(), booking.getStart_at(),
+                    booking.getStart_at(), booking.getEnd_at(), booking.getService());
+            return true;
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public List<CustomerBookingInfo> getCustomerBookings(int customerId) {
+        return jdbcTemplate.query(getCustomerBookings,
+                new Object[]{customerId},
+                (row, number) -> new CustomerBookingInfo(
+                        row.getInt("id"),
+                        row.getString("start_at"),
+                        row.getString("end_at"),
+                        row.getString("city"),
+                        row.getString("street"),
+                        row.getString("building"),
+                        row.getString("service_name"),
+                        row.getInt("price")
+                ));
     }
 
 

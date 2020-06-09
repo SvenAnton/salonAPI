@@ -25,8 +25,8 @@ public class ScheduleController {
 
 
     @GetMapping("/all")
-    public List<Hairdresser> getDisplayOffers() {
-        return scheduleRepository.displayAvailableOffers();
+    public List<Hairdresser> displayAvailableHairdressers() {
+        return scheduleRepository.displayAvailableHairdressers();
     }
 
 

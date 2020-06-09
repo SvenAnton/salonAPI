@@ -30,6 +30,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `location` WRITE;
 /*!40000 ALTER TABLE `location` DISABLE KEYS */;
+INSERT INTO `location` VALUES (1,'EE','Tallinn','Uus','13'),(2,'EE','Tartu','Raekoja','22'),(3,'EE','Tallinn','Viru','8'),(4,'EE','Tallinn','Viru','22'),(5,'LV','Riga','Iela','111'),(6,'EE','Tallinn','Nisu','20');
 /*!40000 ALTER TABLE `location` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -69,7 +70,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `service_booking` WRITE;
 /*!40000 ALTER TABLE `service_booking` DISABLE KEYS */;
-INSERT INTO `service_booking` VALUES (5,1,7,NULL,'2020-06-10 12:00:00','2020-06-10 12:45:00',0,3),(6,2,7,'l6ikan','2020-06-10 14:00:00','2020-06-10 14:45:00',0,3),(7,2,22,'normal','2020-06-20 14:00:00','2020-06-20 14:45:00',0,3),(9,5,13,NULL,'2020-06-11 12:00:00','2020-06-11 13:15:00',0,1),(10,5,13,NULL,'2020-06-11 12:00:00','2020-06-11 13:15:00',0,1),(11,5,13,NULL,'2020-06-11 12:00:00','2020-06-11 13:15:00',0,1),(12,10,13,NULL,'2020-06-11 12:00:00','2020-06-11 13:15:00',0,1),(26,2,13,NULL,'2020-06-11 11:00:00','2020-06-11 12:00:00',0,2),(27,2,21,NULL,'2020-06-11 09:30:00','2020-06-11 10:40:00',0,6);
+INSERT INTO `service_booking` VALUES (5,1,7,NULL,'2020-06-10 12:00:00','2020-06-10 12:45:00',0,3),(6,2,7,'l6ikan','2020-06-10 14:00:00','2020-06-10 14:45:00',0,3),(7,2,22,'normal','2020-06-20 14:00:00','2020-06-20 14:45:00',0,3),(9,5,13,NULL,'2020-06-11 12:00:00','2020-06-11 13:15:00',0,1),(10,5,13,NULL,'2020-06-11 12:00:00','2020-06-11 13:15:00',0,1),(11,5,13,NULL,'2020-06-11 12:00:00','2020-06-11 13:15:00',0,1),(12,10,13,NULL,'2020-06-11 12:00:00','2020-06-11 13:15:00',0,1),(26,2,13,NULL,'2020-06-11 11:00:00','2020-06-11 12:00:00',0,2),(27,2,21,NULL,'2020-06-11 09:30:00','2020-06-11 10:40:00',0,6),(28,2,1,NULL,'2020-06-10 12:30:00','2020-06-10 14:30:00',0,4),(29,2,1,NULL,'2020-06-10 10:00:00','2020-06-10 11:15:00',0,1);
 /*!40000 ALTER TABLE `service_booking` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -99,7 +100,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Kalle','Kogenud juuksur anno 1950','Juuksur','https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'),(2,'Malle','Suurepärase stiilitunnetusega ja auhinnatud soengute sättida','Juuksur','https://www.roteesf.com/wp-content/uploads/2019/11/01-9.jpg'),(3,'Oskar',NULL,'Salong',NULL),(4,'Tiina',NULL,'Salong',NULL),(5,'Peep',NULL,'Juuksur',NULL);
+INSERT INTO `user` VALUES (1,'Kalle','','','',NULL,'Juuksur','https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80','Kogenud juuksur anno 1950'),(2,'Malle','','','',NULL,'Juuksur','https://www.roteesf.com/wp-content/uploads/2019/11/01-9.jpg','Suurepärase stiilitunnetusega ja auhinnatud soengute sättida'),(3,'Oskar','','','',NULL,'Salong',NULL,NULL),(4,'Tiina','','','',NULL,'Salong',NULL,NULL),(5,'Peep','','','',NULL,'Juuksur',NULL,NULL),(6,'Kalle','Kusta','kurikalle@mail.com','$2a$10$ouHsm16OXUMuyG5dVot3Cu7iGIBi7KVym7eLbL0GQrQBe2dMXZ59G','55667788','juuksur',NULL,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -151,4 +152,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-08 20:59:37
+-- Dump completed on 2020-06-09 22:30:25

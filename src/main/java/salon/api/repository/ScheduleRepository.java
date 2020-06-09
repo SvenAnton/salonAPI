@@ -14,19 +14,19 @@ public class ScheduleRepository {
 
 
     private final String initialAvailableOffersSqlString = "" +
-            "select u.id, u.name, u.description,\n" +
-            "GROUP_CONCAT(distinct service.service_type separator ', ') as services, u.profile_picture as picture\n" +
-            "from schedule as sc\n" +
-            "join services_in_schedule as sc_services\n" +
-            "join user_service_list as user_services\n" +
-            "join service as service\n" +
-            "join user as u\n" +
-            "where \n" +
-            "\tsc.id = sc_services.schedule and\n" +
-            "    sc_services.services = user_services.id and\n" +
-            "    user_services.service = service.id and\n" +
-            "    sc.schedule_manager = u.id\n" +
-            "group by u.name;";
+            "select u.id, u.first_name as first_name, u.description as description, " +
+            "GROUP_CONCAT(distinct service.service_type separator ', ') as services, u.profile_picture as picture " +
+            "from schedule as sc " +
+            "join services_in_schedule as sc_services " +
+            "join user_service_list as user_services " +
+            "join service as service " +
+            "join user as u " +
+            "where " +
+            "sc.id = sc_services.schedule and " +
+            "    sc_services.services = user_services.id and " +
+            "    user_services.service = service.id and " +
+            "    sc.schedule_manager = u.id " +
+            "group by first_name;";
 
     private final String getHairdresserWeekScheduleSqlString = "" +
             "select * \n" +
@@ -54,11 +54,11 @@ public class ScheduleRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Hairdresser> displayAvailableOffers() {
+    public List<Hairdresser> displayAvailableHairdressers() {
         return jdbcTemplate.query(initialAvailableOffersSqlString,
                 (row, number) -> new Hairdresser(
                         row.getInt("id"),
-                        row.getString("name"),
+                        row.getString("first_name"),
                         row.getString("description"),
                         row.getString("services"),
                         row.getString("picture")
