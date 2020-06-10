@@ -36,10 +36,5 @@ public class UserController {
     }
 
 
-    @GetMapping("/{email}")
-    public int getCustomer(@PathVariable("email") String email) {
-        return userService.getUserIdByEmail(email);
-    }
-
 
 }
