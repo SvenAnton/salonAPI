@@ -5,6 +5,11 @@ public class OperationResult {
     private String message;
     private Integer id;
 
+    public OperationResult(boolean isSuccess, String message) {
+        this.isSuccess = isSuccess;
+        this.message = message;
+    }
+
     public OperationResult(boolean isSuccess, String message, Integer id) {
         this.isSuccess = isSuccess;
         this.message = message;

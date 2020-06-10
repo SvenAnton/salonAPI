@@ -18,7 +18,6 @@ public class UserServiceRepository {
     }
 
 
-
     public List<String> getDefaultServices() {
         return jdbcTemplate.query(getServicesSqlString,
                 (row, number) -> new String(row.getString("name")));
