@@ -1,11 +1,8 @@
 package salon.api.repository;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import salon.api.model.User;
-
-import java.util.List;
 
 @Repository
 public class UserRepository {
@@ -23,10 +20,11 @@ public class UserRepository {
 
 
     public User getUser(String email) {
-        return jdbcTemplate.queryForObject("select first_name, last_name, email, password, phone " +
+        return jdbcTemplate.queryForObject("select id, first_name, last_name, email, password, phone " +
                         "from user where email = ?",
                 new Object[]{email},
                 (row, number) ->  new User(
+                        row.getInt("id"),
                         row.getString("first_name"),
                         row.getString("last_name"),
                         row.getString("email"),

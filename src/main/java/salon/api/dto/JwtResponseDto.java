@@ -2,12 +2,12 @@ package salon.api.dto;
 
 public class JwtResponseDto {
     private final int id;
-    private final String username;
+    private final String email;
     private final String token;
 
-    public JwtResponseDto(int id, String username, String token) {
+    public JwtResponseDto(int id, String email, String token) {
         this.id = id;
-        this.username = username;
+        this.email = email;
         this.token = token;
     }
 
@@ -15,8 +15,8 @@ public class JwtResponseDto {
         return id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
     public String getToken() {
