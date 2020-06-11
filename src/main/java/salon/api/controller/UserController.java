@@ -36,5 +36,11 @@ public class UserController {
     }
 
 
+    @GetMapping("/{email}")
+    public int getUserId(@PathVariable("email") String email) {
+        return userRepository.getUserIdByEmail(email);
+
+    }
+
 
 }

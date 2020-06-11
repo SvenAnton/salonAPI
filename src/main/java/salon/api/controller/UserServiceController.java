@@ -5,6 +5,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import salon.api.dto.UserServiceListDto;
 import salon.api.model.Bookings;
 import salon.api.model.OperationResult;
 import salon.api.model.UserServices;
@@ -41,6 +42,15 @@ public class UserServiceController {
             return new ResponseEntity<>(result, new HttpHeaders(), HttpStatus.BAD_REQUEST);
         }
     }
+
+    @GetMapping("userServices/all/{email}")
+    public List<UserServiceListDto> addUserServices(@PathVariable("email") String userEmail) {
+        return userServiceRepository.getUserServices(userEmail);
+    }
+
+
+
+
 
 
 }

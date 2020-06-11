@@ -9,6 +9,8 @@ public class Schedule {
     private String start_at;
     private String end_at;
 
+    public Schedule() {}
+
     public Schedule(int id, String schedule_type, int schedule_manager,
                     int room_in_schedule, String start_at, String end_at) {
         this.id = id;
@@ -18,6 +20,7 @@ public class Schedule {
         this.start_at = start_at;
         this.end_at = end_at;
     }
+
 
     public int getId() {
         return id;

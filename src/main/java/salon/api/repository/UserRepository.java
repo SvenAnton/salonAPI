@@ -48,8 +48,9 @@ public class UserRepository {
                 user.getPassword(), user.getPhone());
     }
 
-    public void updateUser(User user) {
-
+    public int getUserIdByEmail(String email) {
+        return jdbcTemplate.queryForObject("select id from user where email = ?",
+                new Object[]{email}, Integer.class);
     }
 
 }

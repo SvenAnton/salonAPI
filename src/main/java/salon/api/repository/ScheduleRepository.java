@@ -2,11 +2,16 @@ package salon.api.repository;
 
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import salon.api.model.Hairdresser;
 import salon.api.model.Schedule;
 import salon.api.model.Services;
+import salon.api.model.ServicesInSchedule;
 
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.List;
 
 @Repository
@@ -26,7 +31,7 @@ public class ScheduleRepository {
             "    sc_services.services = user_services.id and " +
             "    user_services.service = service.id and " +
             "    sc.schedule_manager = u.id " +
-            "group by first_name;";
+            "group by first_name";
 
     private final String getHairdresserWeekScheduleSqlString = "" +
             "select * \n" +
@@ -47,6 +52,12 @@ public class ScheduleRepository {
             "\tsc_services.services = usl.id and\n" +
             "    usl.service = service.id";
 
+    private final String addScheduleSqlString = "insert into " +
+            "schedule(schedule_type, schedule_manager, room_in_schedule, start_at, end_at) " +
+            "values('juuksur', ?, ?, ?, ?)";
+
+    private final String addServicesToScheduleSql = "insert into services_in_schedule(services, schedule) " +
+            "values(?, ?);";
 
 
     private final JdbcTemplate jdbcTemplate;
@@ -102,6 +113,27 @@ public class ScheduleRepository {
         ));
     }
 
+
+    public int addSchedule(Schedule schedule) {
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(
+                    addScheduleSqlString
+                    , Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, schedule.getSchedule_manager());
+            ps.setInt(2, schedule.getRoom_in_schedule());
+            ps.setString(3, schedule.getStart_at());
+            ps.setString(4, schedule.getEnd_at());
+            return ps;
+        }, keyHolder);
+        return keyHolder.getKey().intValue();
+    }
+
+    public void addServicesToSchedule(ServicesInSchedule services) {
+        services.getServices_id().forEach(service -> {
+            jdbcTemplate.update(addServicesToScheduleSql, service, services.getSchedule_id());
+        });
+    }
 
 
 

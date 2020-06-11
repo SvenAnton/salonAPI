@@ -1,10 +1,11 @@
 package salon.api.controller;
 
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import salon.api.model.Hairdresser;
-import salon.api.model.Schedule;
-import salon.api.model.Services;
+import salon.api.model.*;
 import salon.api.repository.ScheduleRepository;
 import salon.api.service.ScheduleService;
 
@@ -45,6 +46,29 @@ public class ScheduleController {
     public List<Services> getHairdresserServices(@PathVariable("id") int hairdresserId) {
         return scheduleRepository.getHairdresserServices(hairdresserId);
     }
+
+
+    @PostMapping("/add")
+    public ResponseEntity<OperationResult> addCompany(@RequestBody Schedule schedule) {
+        OperationResult result = scheduleService.addSchedule(schedule);
+        if (result.isSuccess()) {
+            return new ResponseEntity<>(result, new HttpHeaders(), HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(result, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+    @PostMapping("/add/services")
+    public ResponseEntity<OperationResult> addServicesToSchedule(@RequestBody ServicesInSchedule services) {
+        OperationResult result = scheduleService.addServicesToSchedule(services);
+        if (result.isSuccess()) {
+            return new ResponseEntity<>(result, new HttpHeaders(), HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(result, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
 
 
 
