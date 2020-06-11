@@ -40,7 +40,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `schedule` WRITE;
 /*!40000 ALTER TABLE `schedule` DISABLE KEYS */;
-INSERT INTO `schedule` VALUES (94,'juuksur',9,1,'2020-06-12 08:00:00','2020-06-12 14:00:00'),(95,'juuksur',9,1,'2020-06-13 08:00:00','2020-06-13 16:00:00'),(96,'juuksur',9,1,'2020-06-14 07:00:00','2020-06-14 15:00:00');
+INSERT INTO `schedule` VALUES (94,'juuksur',9,1,'2020-06-12 08:00:00','2020-06-12 14:00:00'),(95,'juuksur',9,1,'2020-06-13 08:00:00','2020-06-13 16:00:00'),(96,'juuksur',9,1,'2020-06-14 07:00:00','2020-06-14 15:00:00'),(97,'juuksur',8,1,'2020-06-12 09:00:00','2020-06-12 14:00:00'),(98,'juuksur',8,1,'2020-06-12 09:00:00','2020-06-12 14:00:00'),(99,'juuksur',8,1,'2020-06-12 09:00:00','2020-06-12 14:00:00'),(100,'juuksur',8,1,'2020-06-14 09:00:00','2020-06-14 19:00:00'),(101,'juuksur',10,1,'2020-06-12 07:30:00','2020-06-12 12:00:00'),(102,'juuksur',10,1,'2020-06-13 07:30:00','2020-06-13 12:00:00'),(103,'juuksur',10,1,'2020-06-15 07:30:00','2020-06-15 16:00:00'),(104,'juuksur',10,1,'2020-06-12 08:00:00','2020-06-12 14:00:00');
 /*!40000 ALTER TABLE `schedule` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,7 +90,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `services_in_schedule` WRITE;
 /*!40000 ALTER TABLE `services_in_schedule` DISABLE KEYS */;
-INSERT INTO `services_in_schedule` VALUES (59,46,94),(60,45,95),(61,45,96),(62,46,96),(63,47,96);
+INSERT INTO `services_in_schedule` VALUES (59,46,94),(60,45,95),(61,45,96),(62,46,96),(63,47,96),(64,48,97),(65,49,97),(66,48,98),(67,48,100),(68,48,99),(69,49,98),(70,49,100),(71,49,99),(72,50,101),(73,50,103),(74,50,102),(75,51,101),(76,51,103),(77,51,102),(78,52,101),(79,52,103),(80,52,102),(81,50,104),(82,51,104),(83,52,104),(84,53,104),(85,54,104);
 /*!40000 ALTER TABLE `services_in_schedule` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,7 +100,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Kalle','','','',NULL,'Juuksur','https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80','Kogenud juuksur anno 1950'),(2,'Malle','','','',NULL,'Juuksur','https://www.roteesf.com/wp-content/uploads/2019/11/01-9.jpg','Suurepärase stiilitunnetusega ja auhinnatud soengute sättida'),(3,'Oskar','','','',NULL,'Salong','https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',NULL),(4,'Tiina','','','',NULL,'Salong','https://www.roteesf.com/wp-content/uploads/2019/11/01-9.jpg',NULL),(5,'Peep','','','',NULL,'Juuksur','https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',NULL),(6,'Kalle','Kusta','kurikalle@mail.com','$2a$10$ouHsm16OXUMuyG5dVot3Cu7iGIBi7KVym7eLbL0GQrQBe2dMXZ59G','55667788','juuksur','https://www.roteesf.com/wp-content/uploads/2019/11/01-9.jpg',NULL),(7,'Peeter','Paan','paan@gmail.com','$2a$10$c5eOAWLfhMsrBHNcn5gB8eKRRid3jcemLs3jwolgBCeWVQoukJr/u','556677','juuksur','https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',NULL),(8,'Kuri','Malle','malle@gmail.com','$2a$10$P2wWRdSro9OgAM1TGVCnreyNX/HMtKTADF..w1w6y63nkw0dLMzaC','55667778','juuksur','https://www.roteesf.com/wp-content/uploads/2019/11/01-9.jpg',NULL),(9,'juta','jube','juta@jube.ee','$2a$10$L3F55MUw8Oq8jlVuqYx6puw1mpOjRvCPrx70CHM35A/LnNKnALY0C','321321','juuksur','https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',NULL);
+INSERT INTO `user` VALUES (1,'Kalle','','','',NULL,'Juuksur','https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80','Kogenud juuksur anno 1950'),(2,'Malle','','','',NULL,'Juuksur','https://www.roteesf.com/wp-content/uploads/2019/11/01-9.jpg','Suurepärase stiilitunnetusega ja auhinnatud soengute sättida'),(3,'Oskar','','','',NULL,'Salong','https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',NULL),(4,'Tiina','','','',NULL,'Salong','https://www.roteesf.com/wp-content/uploads/2019/11/01-9.jpg',NULL),(5,'Peep','','','',NULL,'Juuksur','https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',NULL),(6,'Kalle','Kusta','kurikalle@mail.com','$2a$10$ouHsm16OXUMuyG5dVot3Cu7iGIBi7KVym7eLbL0GQrQBe2dMXZ59G','55667788','juuksur','https://www.roteesf.com/wp-content/uploads/2019/11/01-9.jpg',NULL),(7,'Peeter','Paan','paan@gmail.com','$2a$10$c5eOAWLfhMsrBHNcn5gB8eKRRid3jcemLs3jwolgBCeWVQoukJr/u','556677','juuksur','https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',NULL),(8,'Kuri','Malle','malle@gmail.com','$2a$10$P2wWRdSro9OgAM1TGVCnreyNX/HMtKTADF..w1w6y63nkw0dLMzaC','55667778','juuksur','https://www.roteesf.com/wp-content/uploads/2019/11/01-9.jpg',NULL),(9,'juta','jube','juta@jube.ee','$2a$10$L3F55MUw8Oq8jlVuqYx6puw1mpOjRvCPrx70CHM35A/LnNKnALY0C','321321','juuksur','https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',NULL),(10,'Peeter','Paan','paanipeeter@gmail.com','$2a$10$GpTvaKBGmIzdbUMYUDATIuSQfJQP7OOjo/GdJFspQOFLbmNHpBrN.','55667788','juuksur',NULL,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,7 +110,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `user_service_list` WRITE;
 /*!40000 ALTER TABLE `user_service_list` DISABLE KEYS */;
-INSERT INTO `user_service_list` VALUES (45,9,2,10,20),(46,9,4,50,60),(47,9,1,30,40);
+INSERT INTO `user_service_list` VALUES (45,9,2,10,20),(46,9,4,50,60),(47,9,1,30,40),(48,8,3,10,40),(49,8,5,25,60),(50,10,5,300,120),(51,10,3,80,60),(52,10,2,100,70),(53,10,4,150,150),(54,10,1,70,100);
 /*!40000 ALTER TABLE `user_service_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,4 +152,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-11 20:16:24
+-- Dump completed on 2020-06-11 21:22:35

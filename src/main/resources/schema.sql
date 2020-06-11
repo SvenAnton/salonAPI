@@ -60,8 +60,14 @@ CREATE TABLE `schedule` (
   `room_in_schedule` int NOT NULL,
   `start_at` datetime NOT NULL,
   `end_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`),
+  KEY `schedule_type_idx` (`schedule_type`),
+  KEY `schedule_user_idx` (`schedule_manager`),
+  KEY `workplace_id_idx` (`room_in_schedule`),
+  CONSTRAINT `schedule_type` FOREIGN KEY (`schedule_type`) REFERENCES `schedule_type` (`type_name`),
+  CONSTRAINT `schedule_user` FOREIGN KEY (`schedule_manager`) REFERENCES `user` (`id`),
+  CONSTRAINT `workplace_id` FOREIGN KEY (`room_in_schedule`) REFERENCES `workplace` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,7 +96,9 @@ CREATE TABLE `service` (
   `service_type` varchar(100) NOT NULL,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `name_UNIQUE` (`name`)
+  UNIQUE KEY `name_UNIQUE` (`name`),
+  KEY `service_type_idx` (`service_type`),
+  CONSTRAINT `service_type` FOREIGN KEY (`service_type`) REFERENCES `service_type` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -112,6 +120,8 @@ CREATE TABLE `service_booking` (
   `service` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `service_idx` (`service`),
+  KEY `schedule_refrence_idx` (`schedule`),
+  CONSTRAINT `schedule_refrence` FOREIGN KEY (`schedule`) REFERENCES `schedule` (`id`),
   CONSTRAINT `service` FOREIGN KEY (`service`) REFERENCES `services_in_schedule` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -146,7 +156,7 @@ CREATE TABLE `services_in_schedule` (
   KEY `services_idx` (`services`),
   CONSTRAINT `schedule` FOREIGN KEY (`schedule`) REFERENCES `schedule` (`id`),
   CONSTRAINT `services` FOREIGN KEY (`services`) REFERENCES `user_service_list` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -166,8 +176,10 @@ CREATE TABLE `user` (
   `user_type` varchar(45) NOT NULL,
   `profile_picture` varchar(500) DEFAULT NULL,
   `description` mediumtext,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`),
+  KEY `user_type_refrence_idx` (`user_type`),
+  CONSTRAINT `user_type_refrence` FOREIGN KEY (`user_type`) REFERENCES `user_type` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -183,8 +195,12 @@ CREATE TABLE `user_service_list` (
   `service` int NOT NULL,
   `price` int NOT NULL,
   `duration` int NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`),
+  KEY `user_idx` (`user`),
+  KEY `service_idx` (`service`),
+  CONSTRAINT `service_id` FOREIGN KEY (`service`) REFERENCES `service` (`id`),
+  CONSTRAINT `user` FOREIGN KEY (`user`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -213,7 +229,11 @@ CREATE TABLE `workplace` (
   `name` varchar(45) NOT NULL,
   `location` int NOT NULL,
   `owner` int NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `location_refrence_idx` (`location`),
+  KEY `manager_idx` (`owner`),
+  CONSTRAINT `location_refrence` FOREIGN KEY (`location`) REFERENCES `location` (`id`),
+  CONSTRAINT `manager` FOREIGN KEY (`owner`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -245,4 +265,4 @@ CREATE TABLE `workplace_booking` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-11 20:14:52
+-- Dump completed on 2020-06-11 21:22:52
