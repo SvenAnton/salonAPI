@@ -61,7 +61,7 @@ CREATE TABLE `schedule` (
   `start_at` datetime NOT NULL,
   `end_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113,7 +113,7 @@ CREATE TABLE `service_booking` (
   PRIMARY KEY (`id`),
   KEY `service_idx` (`service`),
   CONSTRAINT `service` FOREIGN KEY (`service`) REFERENCES `services_in_schedule` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -142,11 +142,11 @@ CREATE TABLE `services_in_schedule` (
   `services` int NOT NULL,
   `schedule` int NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `id_idx` (`services`),
   KEY `id_idx1` (`schedule`),
+  KEY `services_idx` (`services`),
   CONSTRAINT `schedule` FOREIGN KEY (`schedule`) REFERENCES `schedule` (`id`),
-  CONSTRAINT `user_services` FOREIGN KEY (`services`) REFERENCES `user_service_list` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `services` FOREIGN KEY (`services`) REFERENCES `user_service_list` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -167,7 +167,7 @@ CREATE TABLE `user` (
   `profile_picture` varchar(500) DEFAULT NULL,
   `description` mediumtext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,13 +178,13 @@ DROP TABLE IF EXISTS `user_service_list`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_service_list` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `user` int NOT NULL,
   `service` int NOT NULL,
   `price` int NOT NULL,
   `duration` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -245,4 +245,4 @@ CREATE TABLE `workplace_booking` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-09 22:30:47
+-- Dump completed on 2020-06-11 20:14:52

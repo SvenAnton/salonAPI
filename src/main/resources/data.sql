@@ -40,7 +40,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `schedule` WRITE;
 /*!40000 ALTER TABLE `schedule` DISABLE KEYS */;
-INSERT INTO `schedule` VALUES (1,'juuksur',1,1,'2020-06-10 10:00:00','2020-06-10 17:00:00'),(7,'juuksur',2,2,'2020-06-10 09:00:00','2020-06-10 17:00:00'),(13,'juuksur',1,1,'2020-06-11 11:00:00','2020-06-11 18:00:00'),(21,'juuksur',2,2,'2020-06-11 09:00:00','2020-06-11 17:00:00'),(22,'juuksur',2,1,'2020-06-20 09:00:00','2020-06-20 17:00:00');
+INSERT INTO `schedule` VALUES (94,'juuksur',9,1,'2020-06-12 08:00:00','2020-06-12 14:00:00'),(95,'juuksur',9,1,'2020-06-13 08:00:00','2020-06-13 16:00:00'),(96,'juuksur',9,1,'2020-06-14 07:00:00','2020-06-14 15:00:00');
 /*!40000 ALTER TABLE `schedule` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -60,7 +60,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `service` WRITE;
 /*!40000 ALTER TABLE `service` DISABLE KEYS */;
-INSERT INTO `service` VALUES (1,'naiste lõikus','naiste juukselõikus pikk'),(2,'naiste lõikus','naiste juukselõikus lühike'),(3,'mehed','meeste juukselõikus'),(4,'soeng','peo soeng'),(5,'värv','triibutamine');
+INSERT INTO `service` VALUES (1,'Naiste juukselõikus','Naiste juukselõikus pikk'),(2,'Naiste juukselõikus','Naiste juukselõikus lühike'),(3,'Meeste juukselõikus','Meeste juustelõikus'),(4,'Soengud','Pidulik soeng'),(5,'Juuste värvimine','Juurte värvimine');
 /*!40000 ALTER TABLE `service` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -70,7 +70,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `service_booking` WRITE;
 /*!40000 ALTER TABLE `service_booking` DISABLE KEYS */;
-INSERT INTO `service_booking` VALUES (5,1,7,NULL,'2020-06-10 12:00:00','2020-06-10 12:45:00',0,3),(6,2,7,'l6ikan','2020-06-10 14:00:00','2020-06-10 14:45:00',0,3),(7,2,22,'normal','2020-06-20 14:00:00','2020-06-20 14:45:00',0,3),(9,5,13,NULL,'2020-06-11 12:00:00','2020-06-11 13:15:00',0,1),(10,5,13,NULL,'2020-06-11 12:00:00','2020-06-11 13:15:00',0,1),(11,5,13,NULL,'2020-06-11 12:00:00','2020-06-11 13:15:00',0,1),(12,10,13,NULL,'2020-06-11 12:00:00','2020-06-11 13:15:00',0,1),(26,2,13,NULL,'2020-06-11 11:00:00','2020-06-11 12:00:00',0,2),(27,2,21,NULL,'2020-06-11 09:30:00','2020-06-11 10:40:00',0,6),(28,2,1,NULL,'2020-06-10 12:30:00','2020-06-10 14:30:00',0,4),(29,2,1,NULL,'2020-06-10 10:00:00','2020-06-10 11:15:00',0,1);
+INSERT INTO `service_booking` VALUES (70,10,94,NULL,'2020-06-12 08:00:00','2020-06-12 14:00:00',0,59),(71,2,95,NULL,'2020-06-13 10:00:00','2020-06-13 10:20:00',1,60),(72,2,95,NULL,'2020-06-13 10:00:00','2020-06-13 10:40:00',1,63),(73,2,95,NULL,'2020-06-13 08:05:00','2020-06-13 08:45:00',0,63),(74,2,95,NULL,'2020-06-13 13:10:00','2020-06-13 13:50:00',0,63);
 /*!40000 ALTER TABLE `service_booking` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,7 +80,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `service_type` WRITE;
 /*!40000 ALTER TABLE `service_type` DISABLE KEYS */;
-INSERT INTO `service_type` VALUES ('mehed','seongute tegemina'),('naiste lõikus','naiste juukselõikused'),('soeng','soengud'),('värv','värvimise teenused');
+INSERT INTO `service_type` VALUES ('Juuste värvimine','värvimise teenused'),('Meeste juukselõikus','seongute tegemina'),('Naiste juukselõikus','naiste juukselõikused'),('Soengud','soengud');
 /*!40000 ALTER TABLE `service_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,7 +90,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `services_in_schedule` WRITE;
 /*!40000 ALTER TABLE `services_in_schedule` DISABLE KEYS */;
-INSERT INTO `services_in_schedule` VALUES (1,1,1),(2,2,1),(3,3,1),(4,4,1),(5,5,1),(6,6,7),(7,7,7),(8,8,7),(9,9,7),(10,10,7),(11,1,13),(12,2,13),(13,3,13),(14,4,13),(15,5,13),(16,6,21),(17,7,21),(18,8,21),(19,9,21),(20,10,21);
+INSERT INTO `services_in_schedule` VALUES (59,46,94),(60,45,95),(61,45,96),(62,46,96),(63,47,96);
 /*!40000 ALTER TABLE `services_in_schedule` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,7 +100,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Kalle','','','',NULL,'Juuksur','https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80','Kogenud juuksur anno 1950'),(2,'Malle','','','',NULL,'Juuksur','https://www.roteesf.com/wp-content/uploads/2019/11/01-9.jpg','Suurepärase stiilitunnetusega ja auhinnatud soengute sättida'),(3,'Oskar','','','',NULL,'Salong',NULL,NULL),(4,'Tiina','','','',NULL,'Salong',NULL,NULL),(5,'Peep','','','',NULL,'Juuksur',NULL,NULL),(6,'Kalle','Kusta','kurikalle@mail.com','$2a$10$ouHsm16OXUMuyG5dVot3Cu7iGIBi7KVym7eLbL0GQrQBe2dMXZ59G','55667788','juuksur',NULL,NULL);
+INSERT INTO `user` VALUES (1,'Kalle','','','',NULL,'Juuksur','https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80','Kogenud juuksur anno 1950'),(2,'Malle','','','',NULL,'Juuksur','https://www.roteesf.com/wp-content/uploads/2019/11/01-9.jpg','Suurepärase stiilitunnetusega ja auhinnatud soengute sättida'),(3,'Oskar','','','',NULL,'Salong','https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',NULL),(4,'Tiina','','','',NULL,'Salong','https://www.roteesf.com/wp-content/uploads/2019/11/01-9.jpg',NULL),(5,'Peep','','','',NULL,'Juuksur','https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',NULL),(6,'Kalle','Kusta','kurikalle@mail.com','$2a$10$ouHsm16OXUMuyG5dVot3Cu7iGIBi7KVym7eLbL0GQrQBe2dMXZ59G','55667788','juuksur','https://www.roteesf.com/wp-content/uploads/2019/11/01-9.jpg',NULL),(7,'Peeter','Paan','paan@gmail.com','$2a$10$c5eOAWLfhMsrBHNcn5gB8eKRRid3jcemLs3jwolgBCeWVQoukJr/u','556677','juuksur','https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',NULL),(8,'Kuri','Malle','malle@gmail.com','$2a$10$P2wWRdSro9OgAM1TGVCnreyNX/HMtKTADF..w1w6y63nkw0dLMzaC','55667778','juuksur','https://www.roteesf.com/wp-content/uploads/2019/11/01-9.jpg',NULL),(9,'juta','jube','juta@jube.ee','$2a$10$L3F55MUw8Oq8jlVuqYx6puw1mpOjRvCPrx70CHM35A/LnNKnALY0C','321321','juuksur','https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,7 +110,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `user_service_list` WRITE;
 /*!40000 ALTER TABLE `user_service_list` DISABLE KEYS */;
-INSERT INTO `user_service_list` VALUES (1,1,1,15,75),(2,1,2,10,60),(3,1,3,10,60),(4,1,4,40,120),(5,1,5,50,180),(6,2,1,20,70),(7,2,2,10,60),(8,2,3,15,45),(9,2,4,30,120),(10,2,5,40,180),(11,3,1,25,75),(12,3,2,10,60),(13,3,4,50,100),(14,3,5,60,150),(15,4,3,10,45),(16,5,1,20,60),(17,5,2,10,60),(18,5,3,20,60);
+INSERT INTO `user_service_list` VALUES (45,9,2,10,20),(46,9,4,50,60),(47,9,1,30,40);
 /*!40000 ALTER TABLE `user_service_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,4 +152,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-09 22:30:25
+-- Dump completed on 2020-06-11 20:16:24
