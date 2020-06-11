@@ -25,26 +25,28 @@ public class BookingRepository {
             "b.start_at < CURDATE() + INTERVAL 7 DAY";
 
     private final String addBookingSqlString = "" +
-            "insert into service_booking(customer, schedule, start_at, end_at, service)\n" +
+            "insert into service_booking(customer, schedule, start_at, end_at, service) " +
             "values(?, (select id from schedule where schedule_manager = ? and date(start_at) = date(?)), ?, ?, ?)";
 
     private final String getCustomerBookings = "" +
-            "select b.id, b.start_at as start_at, b.end_at as end_at, l.city as city, l.street as street, " +
-            "l.building as building, service.name as service_name, usl.price as price " +
-            "from service_booking as b " +
-            "join schedule as sc " +
-            "join workplace as wp " +
-            "join location as l " +
-            "join user_service_list as usl " +
-            "join service as service " +
-            "where " +
-            "b.customer = ? and " +
-            "    b.schedule = sc.id and " +
-            "    sc.room_in_schedule = wp.id and " +
-            "    wp.location = l.id and " +
-            "    usl.id = b.service and " +
-            "    service.id = usl.service and " +
-            "    cancelled = 0;";
+            "            select b.id, b.start_at as start_at, b.end_at as end_at, l.city as city, l.street as street, " +
+            "            l.building as building, service.name as service_name, usl.price as price " +
+            "            from service_booking as b " +
+            "            join schedule as sc " +
+            "            join workplace as wp " +
+            "            join location as l " +
+            "            join services_in_schedule as sc_service " +
+            "            join user_service_list as usl " +
+            "            join service as service " +
+            "            where " +
+            "            b.customer = ? and " +
+            "                b.schedule = sc.id and " +
+            "                sc.room_in_schedule = wp.id and " +
+            "                wp.location = l.id and " +
+            "                sc_service.id = b.service and " +
+            "                usl.id = sc_service.services and " +
+            "                service.id = usl.service and " +
+            "                cancelled = 0";
 
     private final String cancelBookingSqlString = "update service_booking set cancelled = 1 where id = ?";
 

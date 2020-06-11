@@ -41,7 +41,7 @@ public class ScheduleRepository {
             "    AND start_at < CURDATE() + INTERVAL 7 DAY;";
 
     private final String getHairdresserServicesByIdSqlString = "" +
-            "select distinct usl.id as id, service.name as name, usl.duration as duration, usl.price as price\n" +
+            "select distinct sc_services.id as id, service.name as name, usl.duration as duration, usl.price as price\n" +
             "from services_in_schedule as sc_services\n" +
             "join user_service_list as usl\n" +
             "join service as service\n" +
@@ -50,7 +50,8 @@ public class ScheduleRepository {
             "\tsc.schedule_manager = ? and\n" +
             "    sc.id = sc_services.schedule and\n" +
             "\tsc_services.services = usl.id and\n" +
-            "    usl.service = service.id";
+            "    usl.service = service.id " +
+            "group by name";
 
     private final String addScheduleSqlString = "insert into " +
             "schedule(schedule_type, schedule_manager, room_in_schedule, start_at, end_at) " +
